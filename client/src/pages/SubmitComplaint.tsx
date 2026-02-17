@@ -58,6 +58,7 @@ export default function SubmitComplaint() {
                     <SelectValue placeholder="Select category" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="medical">Medical Emergency 🚨</SelectItem>
                     <SelectItem value="plumbing">Plumbing</SelectItem>
                     <SelectItem value="electrical">Electrical</SelectItem>
                     <SelectItem value="furniture">Furniture</SelectItem>
