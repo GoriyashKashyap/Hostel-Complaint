@@ -1,0 +1,8 @@
+backend/
+api/
+.venv/
+node_modules/
+*.db
+*.sqlite
+*.sql
+*.env
