@@ -1,0 +1,18 @@
+fastapi
+uvicorn
+supabase
+pydantic-settings
+python-multipart
+pydantic
+email-validator
+black
+flake8
+pytest
+httpx
+psycopg2-binary # Optional, requires build tools on some platforms
+python-dotenv
+sqlalchemy
+passlib[bcrypt]
+pyjwt
+scikit-learn
+joblib

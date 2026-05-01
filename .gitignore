@@ -1,6 +1,42 @@
-node_modules
-dist
+node_modules/
+dist/
+server/public/
+
+# Environment files
+.env
+.env.*
+!.env.example
+backend/.env
+client/.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.db
+*.sqlite
+
+# Node/yarn/pnpm logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Local state
+backend/alerts_state.json
+
+# ML artifacts
+backend/ml/*.joblib
+
+# OS files
 .DS_Store
-server/public
+Thumbs.db
+
+# Misc build outputs
 vite.config.ts.*
 *.tar.gz

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>Login Test</h1>
+    <button onclick="testLogin()">Test Login</button>
+    <button onclick="checkToken()">Check Token</button>
+    <button onclick="testGetUser()">Test Get User</button>
+    <pre id="output"></pre>
+
+    <script>
+        const API_BASE = 'http://localhost:8000/api/v1';
+        
+        async function testLogin() {
+            const output = document.getElementById('output');
+            try {
+                const response = await fetch(`${API_BASE}/users/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: 'student@hostel.com',
+                        password: 'student123'
+                    })
+                });
+                const data = await response.json();
+                output.textContent = 'Login Response:\n' + JSON.stringify(data, null, 2);
+                
+                if (data.access_token) {
+                    localStorage.setItem('auth_token', data.access_token);
+                    output.textContent += '\n\nToken saved to localStorage!';
+                }
+            } catch (error) {
+                output.textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        function checkToken() {
+            const token = localStorage.getItem('auth_token');
+            const output = document.getElementById('output');
+            output.textContent = 'Token in localStorage:\n' + (token || 'No token found');
+        }
+        
+        async function testGetUser() {
+            const output = document.getElementById('output');
+            const token = localStorage.getItem('auth_token');
+            
+            if (!token) {
+                output.textContent = 'No token found! Login first.';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE}/users/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                output.textContent = 'User Response:\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                output.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
