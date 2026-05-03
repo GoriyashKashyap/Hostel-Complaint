@@ -20,15 +20,15 @@ This is the backend API for the Smart Hostel Issue Reporting System, built with 
    ```
 
 3. **Environment Variables**
-   Copy `.env.example` to `.env` and fill in your Supabase credentials:
+   Copy `.env.example` to `.env` and update settings:
    ```bash
    cp backend/.env.example backend/.env
    ```
    
-   Update `SUPABASE_URL` and `SUPABASE_KEY` with your project details.
+   Update `SECRET_KEY`, `DATABASE_URL`, and `BACKEND_CORS_ORIGINS` (include your frontend URL).
 
 4. **Database Setup**
-   Run the SQL commands in `backend/schema.sql` in your Supabase SQL Editor to set up the tables and security policies.
+   If you are using Supabase/Postgres, run the SQL commands in `backend/schema.sql` to set up the tables and security policies.
 
 ## Running the App
 
