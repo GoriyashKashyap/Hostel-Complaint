@@ -223,16 +223,19 @@ export default function AdminComplaints() {
                         priority === "Medium" ? "bg-orange-50 text-orange-600 border-orange-200" :
                         "bg-blue-50 text-blue-600 border-blue-200";
 
+                      const normalizedCategory = (c.category || "").toLowerCase();
+                      const isMedical = normalizedCategory === "medical" || normalizedCategory === "medical emergency";
+
                       return (
                         <tr key={c.id} className="hover:bg-slate-50/50 transition-colors">
                           <td className="px-6 py-4 text-slate-500">#{c.id}</td>
-                          <td className="px-6 py-4 font-medium text-slate-900">User {c.user_id}</td>
+                          <td className="px-6 py-4 font-medium text-slate-900">{c.user_name || `User ${c.user_id}`}</td>
                           <td className="px-6 py-4 text-slate-700">
                             <div className="font-medium">{c.title}</div>
                             <div className="text-xs text-slate-400">{c.hostel}{c.block ? ` - ${c.block}` : ""}</div>
                           </td>
                           <td className="px-6 py-4">
-                            <Badge variant="outline" className={c.category === "Medical Emergency" ? "bg-red-50 text-red-600 border-red-100" : ""}>
+                            <Badge variant="outline" className={isMedical ? "bg-red-50 text-red-600 border-red-100" : ""}>
                               {c.category || "Uncategorized"}
                             </Badge>
                           </td>
