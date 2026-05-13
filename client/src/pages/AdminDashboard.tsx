@@ -3,7 +3,7 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { Card3D } from "@/components/ui-custom/Card3D";
 import { Button3D } from "@/components/ui-custom/Button3D";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { MoreHorizontal, AlertTriangle, CheckCircle, Clock, Users } from "lucide-react";
+import { AlertTriangle, CheckCircle, Clock, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useMemo, useState } from "react";
 import { apiClient, Complaint } from "@/lib/api";
@@ -291,14 +291,13 @@ export default function AdminDashboard() {
                     <th className="px-6 py-4 font-semibold">Title</th>
                     <th className="px-6 py-4 font-semibold">Priority</th>
                     <th className="px-6 py-4 font-semibold">Status</th>
-                    <th className="px-6 py-4 font-semibold">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {recentComplaints.map((complaint) => (
                     <tr key={complaint.id} className="hover:bg-slate-50/50 transition-colors">
                       <td className="px-6 py-4 text-slate-500">#{complaint.id}</td>
-                      <td className="px-6 py-4 font-medium text-slate-900">User {complaint.user_id}</td>
+                      <td className="px-6 py-4 font-medium text-slate-900">{complaint.user_name || `User ${complaint.user_id}`}</td>
                       <td className="px-6 py-4 text-slate-500">
                         {complaint.hostel}{complaint.block ? ` - ${complaint.block}` : ""}
                       </td>
@@ -326,11 +325,6 @@ export default function AdminDashboard() {
                         }`}>
                           {complaint.status}
                         </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <button className="text-slate-400 hover:text-blue-600 transition-colors">
-                          <MoreHorizontal size={18} />
-                        </button>
                       </td>
                     </tr>
                   ))}
